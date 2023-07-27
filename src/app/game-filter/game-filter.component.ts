@@ -1,5 +1,3 @@
-// src/app/game-filter/game-filter.component.ts
-
 import { Component, OnInit } from '@angular/core';
 import { GameApiService } from '../game-api.service';
 
@@ -19,25 +17,15 @@ export class GameFilterComponent implements OnInit {
   }
 
   getGenresAndPlatforms(): void {
-    this.gameApiService.getGenres().subscribe(
-      genres => {
-        this.genres = genres;
+    this.gameApiService.getGenresAndPlatforms().subscribe(
+      data => {
+        // Eliminar duplicados usando conjuntos (Set) y convertirlos nuevamente a matrices (Array)
+        this.genres = Array.from(new Set(data.genres));
+        this.platforms = Array.from(new Set(data.platforms));
       },
       error => {
-        console.error('Error fetching genres:', error);
-      }
-    );
-
-    this.gameApiService.getPlatforms().subscribe(
-      platforms => {
-        this.platforms = platforms;
-      },
-      error => {
-        console.error('Error fetching platforms:', error);
+        console.error('Error fetching genres and platforms:', error);
       }
     );
   }
 }
-
-
-

@@ -1,8 +1,6 @@
-// src/app/game-api.service.ts
-
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { Observable, throwError, forkJoin } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { Game } from './models/game.model';
 
@@ -16,26 +14,17 @@ export class GameApiService {
 
   getGames(): Observable<Game[]> {
     return this.http.get<Game[]>(`${this.apiUrl}/games`).pipe(
-      map((response: any) => response.map((game: any) => ({
-        id: game.id,
-        title: game.title,
-        thumbnail: game.thumbnail,
-        short_description: game.short_description,
-        genre: game.genre,
-        platform: game.platform
-      }))),
       catchError(this.handleError)
     );
   }
 
-  getGenres(): Observable<string[]> {
-    return this.http.get<string[]>(`${this.apiUrl}/genres/`).pipe(
-      catchError(this.handleError)
-    );
-  }
-
-  getPlatforms(): Observable<string[]> {
-    return this.http.get<string[]>(`${this.apiUrl}/platforms/`).pipe(
+  getGenresAndPlatforms(): Observable<{ genres: string[], platforms: string[] }> {
+    return this.getGames().pipe(
+      map(games => {
+        const genres = games.map(game => game.genre);
+        const platforms = games.map(game => game.platform);
+        return { genres, platforms };
+      }),
       catchError(this.handleError)
     );
   }
@@ -45,4 +34,3 @@ export class GameApiService {
     return throwError('Something went wrong. Please try again later.');
   }
 }
-
