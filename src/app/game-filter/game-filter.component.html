@@ -1,17 +1,38 @@
-<!-- src/app/game-filter/game-filter.component.html -->
-
 <div class="row">
   <div class="col-md-4">
     <label for="genre">Género</label>
-    <select class="form-control" id="genre">
+    <select class="form-control" id="genre" [(ngModel)]="selectedGenre" (ngModelChange)="applyFilters()">
+      <option value="">Todos los géneros</option>
       <option *ngFor="let genre of genres" [value]="genre">{{ genre }}</option>
     </select>
   </div>
   <div class="col-md-4">
     <label for="platform">Plataforma</label>
-    <select class="form-control" id="platform">
+    <select class="form-control" id="platform" [(ngModel)]="selectedPlatform" (ngModelChange)="applyFilters()">
+      <option value="">Todas las plataformas</option>
       <option *ngFor="let platform of platforms" [value]="platform">{{ platform }}</option>
     </select>
   </div>
 </div>
+
+<div class="row m-4">
+  <div class="col-4" *ngFor="let game of filteredGames">
+    <div class="card mb-4">
+      <img [src]="game.thumbnail" class="card-img-top" alt="{{ game.title }}" />
+      <div class="card-body">
+        <h5 class="card-title">{{ game.title }}</h5>
+        <p class="card-text">{{ game.short_description }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="row mt-4">
+  <div class="col-md-12">
+    <h2>Juegos Filtrados</h2>
+    <ul>
+      <li *ngFor="let game of filteredGames">{{ game.title }} - {{ game.genre }} - {{ game.platform }}</li>
+    </ul>
+  </div>
+</div> -->
 

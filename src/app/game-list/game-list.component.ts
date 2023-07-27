@@ -1,8 +1,6 @@
-// src/app/game-list/game-list.component.ts
-
 import { Component, OnInit } from '@angular/core';
-import { Game } from '../models/game.model';
 import { GameApiService } from '../game-api.service';
+import { Game } from '../models/game.model';
 
 @Component({
   selector: 'app-game-list',
@@ -10,7 +8,7 @@ import { GameApiService } from '../game-api.service';
   styleUrls: ['./game-list.component.css']
 })
 export class GameListComponent implements OnInit {
-  games: Game[] = [];
+  games: Game[] = []; // Utiliza la lista completa de juegos obtenida desde el servicio
 
   constructor(private gameApiService: GameApiService) { }
 
@@ -19,10 +17,13 @@ export class GameListComponent implements OnInit {
   }
 
   getGames(): void {
-    this.gameApiService.getGames().subscribe(games => {
-      this.games = games;
-    });
+    this.gameApiService.getGames().subscribe(
+      games => {
+        this.games = games;
+      },
+      error => {
+        console.error('Error fetching games:', error);
+      }
+    );
   }
 }
-
-

@@ -33,4 +33,28 @@ export class GameApiService {
     console.error('An error occurred:', error);
     return throwError('Something went wrong. Please try again later.');
   }
+
+  filterGames(selectedGenre: string, selectedPlatform: string): Observable<Game[]> {
+    return this.getGames().pipe(
+      map(games => {
+        let filteredGames = games;
+
+        // Aplicar filtro por género
+        if (selectedGenre) {
+          filteredGames = filteredGames.filter(game => game.genre === selectedGenre);
+        }
+
+        // Aplicar filtro por plataforma
+        if (selectedPlatform) {
+          filteredGames = filteredGames.filter(game => game.platform === selectedPlatform);
+        }
+
+        return filteredGames;
+      }),
+      catchError(error => {
+        console.error('Error fetching filtered games:', error);
+        return throwError('Something went wrong. Please try again later.');
+      })
+    );
+  }
 }
