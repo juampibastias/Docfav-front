@@ -18,6 +18,12 @@ export class GameApiService {
     );
   }
 
+  getGameDetails(id: number): Observable<Game> {
+    return this.http.get<Game>(`${this.apiUrl}/games/${id}`).pipe(
+      catchError(this.handleError)
+    );
+  }
+
   getGenresAndPlatforms(): Observable<{ genres: string[], platforms: string[] }> {
     return this.getGames().pipe(
       map(games => {

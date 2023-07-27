@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GameApiService } from '../game-api.service';
 import { Game } from '../models/game.model';
+import { Router } from '@angular/router'; 
 
 @Component({
   selector: 'app-game-filter',
@@ -14,7 +15,9 @@ export class GameFilterComponent implements OnInit {
   selectedPlatform: string = '';
   filteredGames: Game[] = []; // Variable para almacenar los juegos filtrados
 
-  constructor(private gameApiService: GameApiService) { }
+  constructor(
+    private gameApiService: GameApiService, 
+    private router: Router ) { }
 
   ngOnInit(): void {
     this.getGenresAndPlatforms();
@@ -36,12 +39,16 @@ export class GameFilterComponent implements OnInit {
   applyFilters(): void {
     this.gameApiService.filterGames(this.selectedGenre, this.selectedPlatform).subscribe(
       filteredGames => {
-        this.filteredGames = filteredGames; // Almacena los juegos filtrados en la variable
+        this.filteredGames = filteredGames;
       },
       error => {
         console.error('Error fetching filtered games:', error);
       }
     );
+  }
+
+  navigateToGameDetails(gameId: number): void {
+    this.router.navigate(['/games', gameId]);
   }
 }
 

@@ -3,10 +3,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { GameListComponent } from './game-list/game-list.component';
+import { GameFilterComponent } from './game-filter/game-filter.component';
+import { GameDetailsComponent } from './game-details/game-details.component';
 
 const routes: Routes = [
-  { path: '', component: GameListComponent },
-  // Puedes agregar rutas adicionales aquí para mostrar la información completa de un juego
+  { path: '', redirectTo: '/games', pathMatch: 'full' },
+  { path: 'games', component: GameListComponent },
+  { path: 'filter', component: GameFilterComponent },
+  { path: 'games/:id', component: GameDetailsComponent }
 ];
 
 @NgModule({
@@ -14,4 +18,5 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+
 

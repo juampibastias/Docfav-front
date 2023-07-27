@@ -5,21 +5,23 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http'; // Agrega esta línea
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { GameListComponent } from './game-list/game-list.component';
+import { GameListComponent } from '../app/game-list/game-list.component';
 import { GameFilterComponent } from './game-filter/game-filter.component';
 import { FormsModule } from '@angular/forms';
+import { GameDetailsComponent } from '../app//game-details/game-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     GameListComponent,
-    GameFilterComponent
+    GameFilterComponent,
+    GameDetailsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule // Asegúrate de agregar HttpClientModule aquí
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
