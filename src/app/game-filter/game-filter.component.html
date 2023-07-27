@@ -1,0 +1,17 @@
+<!-- src/app/game-filter/game-filter.component.html -->
+
+<div class="row">
+  <div class="col-md-4">
+    <label for="genre">Género</label>
+    <select class="form-control" id="genre">
+      <option *ngFor="let genre of genres" [value]="genre">{{ genre }}</option>
+    </select>
+  </div>
+  <div class="col-md-4">
+    <label for="platform">Plataforma</label>
+    <select class="form-control" id="platform">
+      <option *ngFor="let platform of platforms" [value]="platform">{{ platform }}</option>
+    </select>
+  </div>
+</div>
+
