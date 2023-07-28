@@ -18,9 +18,12 @@ export class GameApiService {
     );
   }
 
-  getGameDetails(id: number): Observable<Game> {
-    return this.http.get<Game>(`${this.apiUrl}/games/${id}`).pipe(
-      catchError(this.handleError)
+  getGameDetails(gameId: number): Observable<Game> {
+    return this.http.get<any>(`${this.apiUrl}/game?id=${gameId}`).pipe(
+      map((game: any) => {
+        console.log(game)
+        return game
+      })
     );
   }
 

@@ -14,19 +14,23 @@ export class GameDetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private gameApiService: GameApiService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe(params => {
-      const gameId = Number(params.get('id'));
-      this.gameApiService.getGameDetails(gameId).subscribe(
-        game => {
-          this.game = game;
-        },
-        error => {
-          console.error('Error fetching game details:', error);
-        }
-      );
+    this.route.params.subscribe(params => {
+      const gameId = +params['id']; // Convert the route parameter to a number
+      this.fetchGameDetails(gameId);
     });
+  }
+
+  fetchGameDetails(gameId: number): void {
+    this.gameApiService.getGameDetails(gameId).subscribe(
+      game => {
+        this.game = game;
+      },
+      error => {
+        console.error('Error fetching game details:', error);
+      }
+    );
   }
 }

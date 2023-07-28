@@ -48,7 +48,7 @@ export class GameFilterComponent implements OnInit {
   }
 
   navigateToGameDetails(gameId: number): void {
-    this.router.navigate(['/games', gameId]);
+    this.router.navigate(['/game-details', gameId]);
   }
 }
 

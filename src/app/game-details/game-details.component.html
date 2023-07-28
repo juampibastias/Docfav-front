@@ -1,7 +1,16 @@
-<div *ngIf="game">
-    <h2>{{ game.title }}</h2>
-    <p>{{ game.genre }}</p>
-    <p>{{ game.platform }}</p>
-    <!-- Aquí puedes mostrar más detalles del juego si es necesario -->
+<div class="container mt-4" *ngIf="game">
+  <div class="card">
+    <img
+      [src]="game.thumbnail"
+      class="card-img-top w-50 mx-auto d-block"
+      alt="{{ game.title }}"
+    />
+    <div class="card-body text-center">
+      <h5 class="card-title">{{ game.title }}</h5>
+      <p class="card-text">{{ game.short_description }}</p>
+      <p class="card-text"><strong>Género:</strong> {{ game.genre }}</p>
+      <p class="card-text"><strong>Plataforma:</strong> {{ game.platform }}</p>
+    </div>
+    <button type="button" class="btn btn-dark"><a style="text-decoration: none; color: white;" href="/">Volver</a></button>
   </div>
-  
+</div>

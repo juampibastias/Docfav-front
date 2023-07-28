@@ -5,7 +5,6 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http'; // Agrega esta línea
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { GameListComponent } from '../app/game-list/game-list.component';
 import { GameFilterComponent } from './game-filter/game-filter.component';
 import { FormsModule } from '@angular/forms';
 import { GameDetailsComponent } from '../app//game-details/game-details.component';
@@ -13,7 +12,6 @@ import { GameDetailsComponent } from '../app//game-details/game-details.componen
 @NgModule({
   declarations: [
     AppComponent,
-    GameListComponent,
     GameFilterComponent,
     GameDetailsComponent
   ],
