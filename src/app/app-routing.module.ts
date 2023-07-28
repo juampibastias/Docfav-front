@@ -4,8 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { GameFilterComponent } from './game-filter/game-filter.component';
 import { GameDetailsComponent } from './game-details/game-details.component';
 const routes: Routes = [
-  { path: 'filter', component: GameFilterComponent },
-  { path: 'game/:id', component: GameDetailsComponent },
+  { path: '', component: GameFilterComponent },
   { path: 'game-details/:id', component: GameDetailsComponent },
   { path: '', redirectTo: 'filter', pathMatch: 'full' }
 ];

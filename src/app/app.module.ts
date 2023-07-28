@@ -7,7 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { GameFilterComponent } from './game-filter/game-filter.component';
 import { FormsModule } from '@angular/forms';
-import { GameDetailsComponent } from '../app//game-details/game-details.component';
+import { GameDetailsComponent } from '../app/game-details/game-details.component';
 
 @NgModule({
   declarations: [
