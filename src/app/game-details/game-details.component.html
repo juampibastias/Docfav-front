@@ -2,15 +2,50 @@
   <div class="card">
     <img
       [src]="game.thumbnail"
-      class="card-img-top w-50 mx-auto d-block"
+      class="card-img-top w-100 w-md-50 mx-auto d-block"
       alt="{{ game.title }}"
     />
-    <div class="card-body text-center">
-      <h5 class="card-title">{{ game.title }}</h5>
-      <p class="card-text">{{ game.short_description }}</p>
-      <p class="card-text"><strong>Género:</strong> {{ game.genre }}</p>
-      <p class="card-text"><strong>Plataforma:</strong> {{ game.platform }}</p>
+    <div class="card-body">
+      <h5 class="card-title text-center">{{ game.title }}</h5>
+      <p class="card-text">{{ game.description }}</p>
+      <div class="row">
+        <div class="col-md-6">
+          <p class="card-text"><strong>Género:</strong> {{ game.genre }}</p>
+          <p class="card-text">
+            <strong>Plataforma:</strong> {{ game.platform }}
+          </p>
+          <p class="card-text">
+            <strong>Programador:</strong> {{ game.developer }}
+          </p>
+          <p class="card-text">
+            <strong>Ultima actualización:</strong> {{ game.release_date }}
+          </p>
+          <p class="card-text"><strong>Estado:</strong> {{ game.status }}</p>
+        </div>
+        <div class="col-md-6">
+          <p class="card-text">
+            <strong>Imagen:</strong>
+            <a href="{{ game.thumbnail }}" target="_blank">{{
+              game.thumbnail
+            }}</a>
+          </p>
+          <p class="card-text">
+            <strong>Freetogame:</strong>
+            <a href="{{ game.freetogame_profile_url }}" target="_blank">{{
+              game.freetogame_profile_url
+            }}</a>
+          </p>
+          <p class="card-text">
+            <strong>Game URL:</strong>
+            <a href="{{ game.game_url }}" target="_blank">{{
+              game.game_url
+            }}</a>
+          </p>
+        </div>
+      </div>
     </div>
-    <button type="button" class="btn btn-dark"><a style="text-decoration: none; color: white;" href="/">Volver</a></button>
+    <div class="text-center mb-4">
+      <a href="/" class="btn btn-dark">Volver</a>
+    </div>
   </div>
 </div>
